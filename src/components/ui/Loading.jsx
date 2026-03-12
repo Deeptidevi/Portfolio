@@ -61,14 +61,7 @@ export function Loading() {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="absolute bottom-10 text-xs tracking-widest uppercase text-muted-foreground"
-          >
-            Creative Portfolio 2026
-          </motion.div>
+
         </motion.div>
       )}
     </AnimatePresence>
