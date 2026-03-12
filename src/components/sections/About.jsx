@@ -414,15 +414,7 @@ export function About() {
                       onMouseLeave={() => setHoveredCert(null)}
                       className="group relative p-4 rounded-xl border border-gray-800/50 hover:border-primary/30 cursor-pointer transition-all duration-300"
                     >
-                      {/* Number indicator */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: 0.4 + (index * 0.1) }}
-                      className="absolute -left-8 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-black z-20"
-                    >
-                      {index + 1}
-                    </motion.div>
+  
                     
                     <div className="ml-4 flex-grow">
                       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-2">
