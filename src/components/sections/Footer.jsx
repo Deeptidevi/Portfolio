@@ -11,7 +11,7 @@ export function Footer() {
 
   const contactInfo = [
     { icon: <Mail className="w-5 h-5" />, label: "Email", value: "pathaniadeepti05@gmail.com", href: "mailto:pathaniadeepti05@gmail.com" },
-    { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", value: "deeptidevi", href: "https://www.linkedin.com/in/deeptidevi" },
+    { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", value: "deepti-devi-b43001398", href: "https://www.linkedin.com/in/deepti-devi-b43001398" },
     { icon: <Github className="w-5 h-5" />, label: "GitHub", value: "Deeptidevi", href: "https://github.com/Deeptidevi" },
   ]
 

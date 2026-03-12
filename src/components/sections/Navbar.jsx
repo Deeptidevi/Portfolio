@@ -83,7 +83,7 @@ export function Navbar() {
               </Magnetic>
               <Magnetic strength={0.2}>
                 <a
-                  href="https://www.linkedin.com/in/deeptidevi"
+                  href="https://www.linkedin.com/in/deepti-devi-b43001398"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-primary transition-all p-2"
