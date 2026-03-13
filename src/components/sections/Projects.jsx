@@ -1,122 +1,232 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { ExternalLink, Github, Folder, Code2, Layers, Pill, Building2, Hammer, Dice5 } from "lucide-react"
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { ExternalLink, Github, Folder, Code2, Layers, Pill, Building2, Hammer, Dice5, Activity, Zap, Box } from "lucide-react"
 import { TextReveal } from "../ui/TextReveal"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Tilt } from "../ui/Tilt"
 
-const MedicineAnimation = () => (
-  <div className="absolute top-20 left-1/2 -translate-x-1/2 w-40 h-40 flex items-center justify-center opacity-40">
-    <motion.div
-      animate={{ 
-        rotate: [0, 360],
-        y: [0, -10, 0]
-      }}
-      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-      className="relative"
-    >
-      <Pill className="w-16 h-16 text-primary" />
-      <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.5, 0.2] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute inset-0 bg-primary/20 blur-xl rounded-full"
-      />
-    </motion.div>
-    {[...Array(4)].map((_, i) => (
-      <motion.div
-        key={i}
-        animate={{ 
-          y: [0, -40, 0],
-          x: [0, (i % 2 === 0 ? 20 : -20), 0],
-          opacity: [0, 1, 0]
-        }}
-        transition={{ 
-          duration: 3, 
-          delay: i * 0.5, 
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute"
-        style={{ left: `${25 * i}%` }}
-      >
-        <div className="w-2 h-2 bg-primary/40 rounded-full" />
-      </motion.div>
-    ))}
-  </div>
-)
+const MedicineAnimation = ({ mousePos }) => {
+  const x = useSpring(mousePos.x, { stiffness: 100, damping: 30 })
+  const y = useSpring(mousePos.y, { stiffness: 100, damping: 30 })
+  
+  const rotateX = useTransform(y, [0, 500], [15, -15])
+  const rotateY = useTransform(x, [0, 400], [-15, 15])
 
-const ConstructionAnimation = () => (
-  <div className="absolute top-20 left-1/2 -translate-x-1/2 w-40 h-40 flex items-center justify-center opacity-40">
-    <motion.div
-      animate={{ 
-        y: [0, -5, 0],
-      }}
-      transition={{ duration: 2, repeat: Infinity }}
-      className="relative flex flex-col items-center"
-    >
-      <div className="flex gap-2">
-        <motion.div
-          animate={{ scaleY: [1, 1.2, 1] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-4 h-12 bg-primary/30 rounded-t-sm"
-        />
-        <motion.div
-          animate={{ scaleY: [1, 1.5, 1] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
-          className="w-4 h-16 bg-primary/40 rounded-t-sm"
-        />
-        <motion.div
-          animate={{ scaleY: [1, 1.3, 1] }}
-          transition={{ duration: 1.8, repeat: Infinity, delay: 0.4 }}
-          className="w-4 h-14 bg-primary/30 rounded-t-sm"
-        />
-      </div>
-      <div className="w-20 h-1 bg-primary/60 rounded-full mt-1" />
+  return (
+    <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
       <motion.div
-        animate={{ rotate: [-10, 10, -10] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        className="absolute -top-4 -right-4"
+        style={{ rotateX, rotateY, perspective: 1000 }}
+        className="relative w-full h-full flex items-center justify-center"
       >
-        <Hammer className="w-8 h-8 text-primary/60" />
-      </motion.div>
-    </motion.div>
-  </div>
-)
-
-const LudoAnimation = () => (
-  <div className="absolute top-20 left-1/2 -translate-x-1/2 w-40 h-40 flex items-center justify-center opacity-40">
-    <motion.div
-      animate={{ 
-        rotate: [0, 90, 180, 270, 360],
-        scale: [1, 1.1, 1]
-      }}
-      transition={{ duration: 4, repeat: Infinity }}
-      className="p-4 border-2 border-primary/30 rounded-2xl bg-primary/5"
-    >
-      <Dice5 className="w-12 h-12 text-primary" />
-    </motion.div>
-    
-    {[...Array(4)].map((_, i) => {
-      const colors = ["bg-red-500", "bg-blue-500", "bg-green-500", "bg-yellow-500"]
-      return (
+        {/* Floating Molecule Hub */}
         <motion.div
-          key={i}
           animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.7, 0.3]
+            y: [0, -20, 0],
+            rotate: [0, 360]
           }}
-          transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-          className={`absolute w-3 h-3 rounded-full ${colors[i]} blur-[2px]`}
-          style={{
-            top: i < 2 ? '20%' : '70%',
-            left: i % 2 === 0 ? '20%' : '70%'
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="relative z-10"
+        >
+          <div className="w-24 h-24 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center backdrop-blur-sm">
+            <Activity className="w-10 h-10 text-primary animate-pulse" />
+          </div>
+          
+          {/* Orbiting Particles */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              animate={{ 
+                rotate: [0, 360],
+              }}
+              transition={{ 
+                duration: 10 + i * 2, 
+                repeat: Infinity, 
+                ease: "linear" 
+              }}
+              className="absolute inset-0"
+            >
+              <motion.div 
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary/40 blur-[1px]"
+                style={{ transform: `translateY(-${50 + i * 10}px)` }}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Background Grid/Cells */}
+        <div className="absolute inset-0 grid grid-cols-6 gap-4 opacity-10">
+          {[...Array(24)].map((_, i) => (
+            <motion.div
+              key={i}
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{ 
+                duration: 3, 
+                delay: i * 0.1, 
+                repeat: Infinity 
+              }}
+              className="aspect-square rounded-lg border border-primary/20"
+            />
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+const ConstructionAnimation = ({ mousePos }) => {
+  const x = useSpring(mousePos.x, { stiffness: 100, damping: 30 })
+  const y = useSpring(mousePos.y, { stiffness: 100, damping: 30 })
+  
+  const rotateX = useTransform(y, [0, 500], [10, -10])
+  const rotateY = useTransform(x, [0, 400], [-10, 10])
+
+  return (
+    <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+      <motion.div
+        style={{ rotateX, rotateY, perspective: 1000 }}
+        className="relative w-full h-full"
+      >
+        {/* Animated Blueprint Grid */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-full h-full border border-primary/10 grid grid-cols-12 gap-0 opacity-20">
+            {[...Array(144)].map((_, i) => (
+              <div key={i} className="border-[0.5px] border-primary/5" />
+            ))}
+          </div>
+        </div>
+
+        {/* Dynamic Building Blocks */}
+        <div className="absolute inset-0 flex items-center justify-center gap-2">
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={i}
+              initial={{ height: 40 }}
+              animate={{ 
+                height: [40, 80 + i * 20, 40],
+                opacity: [0.2, 0.5, 0.2]
+              }}
+              transition={{ 
+                duration: 4, 
+                delay: i * 0.5, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="w-8 bg-primary/30 rounded-t-lg relative"
+            >
+              <motion.div 
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
+                className="absolute top-2 left-1/2 -translate-x-1/2"
+              >
+                <Zap className="w-4 h-4 text-primary" />
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Crane Hook */}
+        <motion.div
+          style={{ 
+            x: useTransform(x, [0, 400], [-50, 50]),
+            y: useTransform(y, [0, 500], [-30, 30])
           }}
-        />
-      )
-    })}
-  </div>
-)
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 z-20"
+        >
+          <div className="w-1 h-32 bg-primary/20 relative">
+            <motion.div 
+              animate={{ rotate: [-5, 5, -5] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="absolute bottom-0 left-1/2 -translate-x-1/2"
+            >
+              <Hammer className="w-10 h-10 text-primary/60" />
+            </motion.div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
+  )
+}
+
+const LudoAnimation = ({ mousePos }) => {
+  const x = useSpring(mousePos.x, { stiffness: 100, damping: 30 })
+  const y = useSpring(mousePos.y, { stiffness: 100, damping: 30 })
+  
+  const rotateX = useTransform(y, [0, 500], [20, -20])
+  const rotateY = useTransform(x, [0, 400], [-20, 20])
+
+  return (
+    <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+      <motion.div
+        style={{ rotateX, rotateY, perspective: 1000 }}
+        className="relative w-full h-full flex items-center justify-center"
+      >
+        {/* Floating Game Board Elements */}
+        <div className="relative w-64 h-64 border-2 border-primary/20 rounded-3xl rotate-45 flex items-center justify-center bg-primary/5 backdrop-blur-sm">
+          <motion.div
+            animate={{ 
+              rotate: [0, -360],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="w-32 h-32 border border-primary/30 rounded-xl flex items-center justify-center"
+          >
+            <Dice5 className="w-16 h-16 text-primary -rotate-45" />
+          </motion.div>
+
+          {/* Jumping Pieces */}
+          {[...Array(4)].map((_, i) => {
+            const colors = ["bg-red-500", "bg-blue-500", "bg-green-500", "bg-yellow-500"]
+            return (
+              <motion.div
+                key={i}
+                animate={{ 
+                  y: [0, -30, 0],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ 
+                  duration: 2, 
+                  delay: i * 0.4, 
+                  repeat: Infinity,
+                  ease: "backOut" 
+                }}
+                className={`absolute w-6 h-6 rounded-full ${colors[i]} shadow-[0_0_15px_rgba(255,255,255,0.3)]`}
+                style={{
+                  top: i < 2 ? '10%' : '80%',
+                  left: i % 2 === 0 ? '10%' : '80%'
+                }}
+              />
+            )
+          })}
+        </div>
+
+        {/* Energy Streaks */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={i}
+              animate={{ 
+                x: [-100, 500],
+                opacity: [0, 0.5, 0]
+              }}
+              transition={{ 
+                duration: 2, 
+                delay: i * 0.3, 
+                repeat: Infinity,
+                ease: "linear" 
+              }}
+              className="absolute h-px w-20 bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+              style={{ top: `${10 * i}%` }}
+            />
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  )
+}
 
 const projects = [
   {
@@ -127,7 +237,7 @@ const projects = [
     github: "https://github.com/Deeptidevi",
     live: "https://pharmacy-store-frontend-roan.vercel.app/",
     color: "from-blue-500/20 to-cyan-500/20",
-    animation: <MedicineAnimation />
+    animation: MedicineAnimation
   },
   {
     title: "Ludo Mazza - Game",
@@ -137,7 +247,7 @@ const projects = [
     github: "https://github.com/Deeptidevi",
     live: "https://github.com/Deeptidevi",
     color: "from-gray-500/10 to-gray-700/10",
-    animation: <LudoAnimation />
+    animation: LudoAnimation
   },
   {
     title: "Nits Construction Website",
@@ -147,7 +257,7 @@ const projects = [
     github: "https://github.com/Deeptidevi",
     live: "https://nitsconstructionltd.co.uk/",
     color: "from-emerald-500/20 to-teal-500/20",
-    animation: <ConstructionAnimation />
+    animation: ConstructionAnimation
   }
 ]
 
@@ -181,16 +291,17 @@ export function Projects() {
 
           {projects.map((project, index) => {
             const cardRef = useRef(null)
-            const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+            const mouseX = useMotionValue(0)
+            const mouseY = useMotionValue(0)
 
             const handleMouseMove = (e) => {
               if (!cardRef.current) return
               const rect = cardRef.current.getBoundingClientRect()
-              setMousePos({
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top
-              })
+              mouseX.set(e.clientX - rect.left)
+              mouseY.set(e.clientY - rect.top)
             }
+
+            const Animation = project.animation
 
             return (
               <Tilt key={index}>
@@ -221,10 +332,13 @@ export function Projects() {
                   className="group relative h-[500px] rounded-[3rem] overflow-hidden border border-white/5 bg-[#0a0a0a] shadow-2xl perspective-1000"
                 >
                   {/* Spotlight Effect */}
-                  <div 
+                  <motion.div 
                     className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
-                      background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(var(--primary-rgb), 0.1), transparent 80%)`
+                      background: useTransform(
+                        [mouseX, mouseY],
+                        ([x, y]) => `radial-gradient(400px circle at ${x}px ${y}px, rgba(var(--primary-rgb), 0.15), transparent 80%)`
+                      )
                     }}
                   />
 
@@ -245,8 +359,8 @@ export function Projects() {
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-40 transition-opacity duration-700`} />
 
                   {/* Animation Overlay */}
-                  <div className="absolute inset-0 z-15 pointer-events-none transition-transform duration-700 group-hover:scale-110">
-                    {project.animation}
+                  <div className="absolute inset-0 z-15 pointer-events-none">
+                    <Animation mousePos={{ x: mouseX, y: mouseY }} />
                   </div>
 
                   {/* Content Overlay */}
