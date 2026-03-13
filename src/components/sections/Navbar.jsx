@@ -134,13 +134,27 @@ export function Navbar() {
                   {item.name}
                 </a>
               ))}
-              <a 
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-bold hover:bg-primary/90 transition-colors text-center"
-              >
-                Contact Me
-              </a>
+              <div className="flex flex-col gap-4">
+                <a 
+                  href="#contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-bold hover:bg-primary/90 transition-colors text-center"
+                >
+                  Contact Me
+                </a>
+                <div className="flex items-center justify-center gap-6 py-4">
+                  <a href="https://github.com/Deeptidevi" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:text-primary transition-all">
+                    <Github className="w-6 h-6" />
+                  </a>
+                  <a href="https://www.linkedin.com/in/deepti-devi-b43001398" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:text-primary transition-all">
+                    <Linkedin className="w-6 h-6" />
+                  </a>
+                  <a href="https://drive.google.com/file/d/1BT1dhE-whJek2ZRBIHVqFNiUZ_r5JDxm/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:text-primary transition-all flex items-center gap-2 px-6">
+                    <FileDown className="w-5 h-5" />
+                    <span className="text-xs font-black uppercase tracking-widest">Resume</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </motion.div>
         )}

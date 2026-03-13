@@ -257,7 +257,7 @@ export function Skills() {
   })
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest > 0.05) setLayoutMode("grid")
+    if (latest > 0.1) setLayoutMode("grid")
     else setLayoutMode("stack")
   })
 
@@ -275,11 +275,11 @@ export function Skills() {
     
     if (isMobile) {
       const row = index
-      const yGap = 450 
+      const yGap = 420 
       return {
         x: 0,
-        y: (row - 2) * yGap + 120, 
-        scale: 1,
+        y: (row - 2) * yGap + 150, 
+        scale: 0.9,
         rotate: 0,
         zIndex: 1,
         opacity: 1
@@ -306,7 +306,7 @@ export function Skills() {
       ref={sectionRef}
       id="skills"
       className="relative bg-black z-50 overflow-visible"
-      style={{ height: "500vh" }}
+      style={{ height: "250vh" }}
     >
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
         

@@ -99,7 +99,7 @@ export function Experience() {
                   </div>
 
                   <div>
-                    <h3 className="text-3xl font-black tracking-tighter uppercase group-hover:text-primary transition-colors duration-500 leading-none">
+                    <h3 className="text-2xl md:text-3xl font-black tracking-tighter uppercase group-hover:text-primary transition-colors duration-500 leading-none">
                       {exp.role}
                     </h3>
                     <p className="text-primary/80 font-bold mt-2 uppercase tracking-widest text-xs">

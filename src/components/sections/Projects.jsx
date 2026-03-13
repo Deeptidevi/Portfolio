@@ -1,10 +1,122 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ExternalLink, Github, Folder, Code2, Layers } from "lucide-react"
+import { ExternalLink, Github, Folder, Code2, Layers, Pill, Building2, Hammer, Dice5 } from "lucide-react"
 import { TextReveal } from "../ui/TextReveal"
 import { useState, useRef } from "react"
 import { Tilt } from "../ui/Tilt"
+
+const MedicineAnimation = () => (
+  <div className="absolute top-20 left-1/2 -translate-x-1/2 w-40 h-40 flex items-center justify-center opacity-40">
+    <motion.div
+      animate={{ 
+        rotate: [0, 360],
+        y: [0, -10, 0]
+      }}
+      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+      className="relative"
+    >
+      <Pill className="w-16 h-16 text-primary" />
+      <motion.div
+        animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.5, 0.2] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute inset-0 bg-primary/20 blur-xl rounded-full"
+      />
+    </motion.div>
+    {[...Array(4)].map((_, i) => (
+      <motion.div
+        key={i}
+        animate={{ 
+          y: [0, -40, 0],
+          x: [0, (i % 2 === 0 ? 20 : -20), 0],
+          opacity: [0, 1, 0]
+        }}
+        transition={{ 
+          duration: 3, 
+          delay: i * 0.5, 
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="absolute"
+        style={{ left: `${25 * i}%` }}
+      >
+        <div className="w-2 h-2 bg-primary/40 rounded-full" />
+      </motion.div>
+    ))}
+  </div>
+)
+
+const ConstructionAnimation = () => (
+  <div className="absolute top-20 left-1/2 -translate-x-1/2 w-40 h-40 flex items-center justify-center opacity-40">
+    <motion.div
+      animate={{ 
+        y: [0, -5, 0],
+      }}
+      transition={{ duration: 2, repeat: Infinity }}
+      className="relative flex flex-col items-center"
+    >
+      <div className="flex gap-2">
+        <motion.div
+          animate={{ scaleY: [1, 1.2, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="w-4 h-12 bg-primary/30 rounded-t-sm"
+        />
+        <motion.div
+          animate={{ scaleY: [1, 1.5, 1] }}
+          transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
+          className="w-4 h-16 bg-primary/40 rounded-t-sm"
+        />
+        <motion.div
+          animate={{ scaleY: [1, 1.3, 1] }}
+          transition={{ duration: 1.8, repeat: Infinity, delay: 0.4 }}
+          className="w-4 h-14 bg-primary/30 rounded-t-sm"
+        />
+      </div>
+      <div className="w-20 h-1 bg-primary/60 rounded-full mt-1" />
+      <motion.div
+        animate={{ rotate: [-10, 10, -10] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        className="absolute -top-4 -right-4"
+      >
+        <Hammer className="w-8 h-8 text-primary/60" />
+      </motion.div>
+    </motion.div>
+  </div>
+)
+
+const LudoAnimation = () => (
+  <div className="absolute top-20 left-1/2 -translate-x-1/2 w-40 h-40 flex items-center justify-center opacity-40">
+    <motion.div
+      animate={{ 
+        rotate: [0, 90, 180, 270, 360],
+        scale: [1, 1.1, 1]
+      }}
+      transition={{ duration: 4, repeat: Infinity }}
+      className="p-4 border-2 border-primary/30 rounded-2xl bg-primary/5"
+    >
+      <Dice5 className="w-12 h-12 text-primary" />
+    </motion.div>
+    
+    {[...Array(4)].map((_, i) => {
+      const colors = ["bg-red-500", "bg-blue-500", "bg-green-500", "bg-yellow-500"]
+      return (
+        <motion.div
+          key={i}
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.7, 0.3]
+          }}
+          transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
+          className={`absolute w-3 h-3 rounded-full ${colors[i]} blur-[2px]`}
+          style={{
+            top: i < 2 ? '20%' : '70%',
+            left: i % 2 === 0 ? '20%' : '70%'
+          }}
+        />
+      )
+    })}
+  </div>
+)
 
 const projects = [
   {
@@ -14,16 +126,18 @@ const projects = [
     image: "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=2070&auto=format&fit=crop",
     github: "https://github.com/Deeptidevi",
     live: "https://pharmacy-store-frontend-roan.vercel.app/",
-    color: "from-blue-500/20 to-cyan-500/20"
+    color: "from-blue-500/20 to-cyan-500/20",
+    animation: <MedicineAnimation />
   },
   {
     title: "Ludo Mazza - Game",
     description: "Constructed a real-time multiplayer UI using React.js and Tailwind CSS, efficiently handling complex state-driven game logic with optimized component rendering. Architected a reusable, scalable design patterns, minimizing code redundancy, and enabling faster feature development across multiple screens and devices. Enhanced performance and responsiveness through controlled re-renders, and real-time interactive updates.",
     tags: ["React.js", "Tailwind CSS", "VS Code"],
-    image: null, // Removed background image
+    image: null, 
     github: "https://github.com/Deeptidevi",
     live: "https://github.com/Deeptidevi",
-    color: "from-gray-500/10 to-gray-700/10" // Basic color
+    color: "from-gray-500/10 to-gray-700/10",
+    animation: <LudoAnimation />
   },
   {
     title: "Nits Construction Website",
@@ -32,7 +146,8 @@ const projects = [
     image: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?q=80&w=2070&auto=format&fit=crop",
     github: "https://github.com/Deeptidevi",
     live: "https://nitsconstructionltd.co.uk/",
-    color: "from-emerald-500/20 to-teal-500/20"
+    color: "from-emerald-500/20 to-teal-500/20",
+    animation: <ConstructionAnimation />
   }
 ]
 
@@ -128,6 +243,11 @@ export function Projects() {
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-40 transition-opacity duration-700`} />
+
+                  {/* Animation Overlay */}
+                  <div className="absolute inset-0 z-15 pointer-events-none transition-transform duration-700 group-hover:scale-110">
+                    {project.animation}
+                  </div>
 
                   {/* Content Overlay */}
                   <div className="absolute inset-0 p-10 flex flex-col justify-end z-20">
