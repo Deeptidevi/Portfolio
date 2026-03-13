@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion"
 import { Code, Server, Database, Wrench, Cpu, Grid3x3 } from "lucide-react"
 import { TextReveal } from "../ui/TextReveal"
