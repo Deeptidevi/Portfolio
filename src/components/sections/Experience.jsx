@@ -39,24 +39,24 @@ const experiences = [
 
 export function Experience() {
   return (
-    <section id="experience" className="py-32 bg-black relative z-40">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-24 flex flex-col items-center">
-          <TextReveal text="Work Experience" className="text-5xl md:text-7xl font-black tracking-tighter uppercase mb-6" />
+    <section id="experience" className="py-20 md:py-32 bg-black relative z-40">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="text-center mb-16 md:mb-24 flex flex-col items-center">
+          <TextReveal text="Work Experience" className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase mb-6" />
           <div className="w-24 h-1.5 bg-primary rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 relative">
           {/* Subtle Background Glows that follow scroll */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 0.1, x: 0 }}
-            className="absolute -left-20 top-0 w-64 h-64 bg-primary rounded-full blur-[120px] pointer-events-none"
+            className="absolute -left-20 top-0 w-64 h-64 bg-primary rounded-full blur-[120px] pointer-events-none hidden md:block"
           />
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 0.1, x: 0 }}
-            className="absolute -right-20 bottom-0 w-64 h-64 bg-primary rounded-full blur-[120px] pointer-events-none"
+            className="absolute -right-20 bottom-0 w-64 h-64 bg-primary rounded-full blur-[120px] pointer-events-none hidden md:block"
           />
 
           {experiences.map((exp, index) => (
@@ -64,19 +64,17 @@ export function Experience() {
               key={index} 
               initial={{ 
                 opacity: 0, 
-                x: index % 2 === 0 ? -150 : 150,
-                rotateY: index % 2 === 0 ? 45 : -45
+                y: 50,
+                scale: 0.95
               }}
               whileInView={{ 
                 opacity: 1, 
-                x: 0,
-                rotateY: 0
+                y: 0,
+                scale: 1
               }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ 
-                type: "spring",
-                stiffness: 60,
-                damping: 20,
+                duration: 0.6,
                 delay: index * 0.1 
               }}
               className="w-full relative z-10"
@@ -85,7 +83,7 @@ export function Experience() {
                 href={exp.link} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="block group p-10 rounded-[3rem] border border-white/5 bg-[#0a0a0a] hover:border-primary/30 transition-all duration-700 shadow-2xl h-full cursor-pointer"
+                className="block group p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] border border-white/5 bg-[#0a0a0a] hover:border-primary/30 transition-all duration-700 shadow-2xl h-full cursor-pointer"
               >
                 <div className="flex flex-col gap-6 h-full">
                   <div className="flex items-center justify-between flex-wrap gap-4">

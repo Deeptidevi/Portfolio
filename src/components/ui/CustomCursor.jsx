@@ -21,6 +21,9 @@ export function CustomCursor() {
   const torchYSpring = useSpring(cursorY, torchConfig)
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768
+    if (isMobile) return
+
     const moveCursor = (e) => {
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)

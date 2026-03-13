@@ -263,6 +263,16 @@ const projects = [
 
 export function Projects() {
   const [hoveredIndex, setHoveredIndex] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   return (
     <section id="projects" className="py-20 md:py-60 bg-black relative z-30 overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,1)]">
@@ -272,7 +282,7 @@ export function Projects() {
           <div className="w-24 h-1.5 bg-primary rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8 relative">
           {/* Surprise Reflecting Light Streaks */}
           <motion.div
             initial={{ width: 0, opacity: 0, x: -100 }}
@@ -303,91 +313,95 @@ export function Projects() {
 
             const Animation = project.animation
 
-            return (
-              <Tilt key={index}>
-                <motion.div
-                  ref={cardRef}
-                  onMouseMove={handleMouseMove}
-                  initial={{ 
-                    opacity: 0, 
-                    y: 50,
-                    scale: 0.95
+            const CardContent = (
+              <motion.div
+                ref={cardRef}
+                onMouseMove={handleMouseMove}
+                initial={{ 
+                  opacity: 0, 
+                  y: 50,
+                  scale: 0.95
+                }}
+                whileInView={{ 
+                  opacity: 1, 
+                  y: 0,
+                  scale: 1
+                }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ 
+                  duration: 0.6,
+                  delay: index * 0.1 
+                }}
+                className="group relative h-[450px] md:h-[500px] rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/5 bg-[#0a0a0a] shadow-2xl"
+              >
+                {/* Spotlight Effect - Hidden on Mobile */}
+                <motion.div 
+                  className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:block"
+                  style={{
+                    background: useTransform(
+                      [mouseX, mouseY],
+                      ([x, y]) => `radial-gradient(400px circle at ${x}px ${y}px, rgba(var(--primary-rgb), 0.15), transparent 80%)`
+                    )
                   }}
-                  whileInView={{ 
-                    opacity: 1, 
-                    y: 0,
-                    scale: 1
-                  }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ 
-                    duration: 0.6,
-                    delay: index * 0.1 
-                  }}
-                  className="group relative h-[450px] md:h-[500px] rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/5 bg-[#0a0a0a] shadow-2xl"
-                >
-                  {/* Spotlight Effect - Hidden on Mobile */}
-                  <motion.div 
-                    className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:block"
+                />
+
+                {/* Background Image with Zoom & Darken */}
+                {project.image ? (
+                  <div 
+                    className="absolute inset-0 transition-all duration-1000 ease-out group-hover:scale-110 group-hover:brightness-50"
                     style={{
-                      background: useTransform(
-                        [mouseX, mouseY],
-                        ([x, y]) => `radial-gradient(400px circle at ${x}px ${y}px, rgba(var(--primary-rgb), 0.15), transparent 80%)`
-                      )
+                      backgroundImage: `url(${project.image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
                     }}
                   />
+                ) : (
+                  <div className="absolute inset-0 bg-[#0a0a0a]" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90" />
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-40 transition-opacity duration-700`} />
 
-                  {/* Background Image with Zoom & Darken */}
-                  {project.image ? (
-                    <div 
-                      className="absolute inset-0 transition-all duration-1000 ease-out group-hover:scale-110 group-hover:brightness-50"
-                      style={{
-                        backgroundImage: `url(${project.image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
-                    />
-                  ) : (
-                    <div className="absolute inset-0 bg-[#0a0a0a]" />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90" />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-40 transition-opacity duration-700`} />
+                {/* Animation Overlay - Scaled for Mobile */}
+                <div className="absolute inset-0 z-15 pointer-events-none scale-[0.6] md:scale-100 origin-center">
+                  <Animation mousePos={{ x: mouseX, y: mouseY }} />
+                </div>
 
-                  {/* Animation Overlay - Scaled for Mobile */}
-                  <div className="absolute inset-0 z-15 pointer-events-none scale-75 md:scale-100 origin-center">
-                    <Animation mousePos={{ x: mouseX, y: mouseY }} />
+                {/* Content Overlay */}
+                <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end z-20">
+                  <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="px-3 md:px-4 py-1 md:py-1.5 text-[8px] md:text-[10px] font-bold uppercase tracking-wider rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-white/80">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
+                  
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2 md:mb-3 tracking-tighter group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-gray-400 text-xs md:text-sm mb-6 md:mb-8 leading-relaxed line-clamp-3 md:line-clamp-2">
+                    {project.description}
+                  </p>
 
-                  {/* Content Overlay */}
-                  <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end z-20">
-                    <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
-                      {project.tags.map(tag => (
-                        <span key={tag} className="px-3 md:px-4 py-1 md:py-1.5 text-[8px] md:text-[10px] font-bold uppercase tracking-wider rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-white/80">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2 md:mb-3 tracking-tighter group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    
-                    <p className="text-gray-400 text-xs md:text-sm mb-6 md:mb-8 leading-relaxed line-clamp-3 md:line-clamp-2">
-                      {project.description}
-                    </p>
-
-                    <div className="flex gap-3 md:gap-4">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-white/5 border border-white/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300 backdrop-blur-xl text-[10px] md:text-xs font-bold uppercase tracking-widest">
-                        <Github className="w-3.5 md:w-4 h-3.5 md:h-4" />
-                        Code
-                      </a>
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-primary text-primary-foreground rounded-full hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300 text-[10px] md:text-xs font-bold uppercase tracking-widest">
-                        <ExternalLink className="w-3.5 md:w-4 h-3.5 md:h-4" />
-                        Live
-                      </a>
-                    </div>
+                  <div className="flex gap-3 md:gap-4">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-white/5 border border-white/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300 backdrop-blur-xl text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                      <Github className="w-3.5 md:w-4 h-3.5 md:h-4" />
+                      Code
+                    </a>
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-primary text-primary-foreground rounded-full hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                      <ExternalLink className="w-3.5 md:w-4 h-3.5 md:h-4" />
+                      Live
+                    </a>
                   </div>
-                </motion.div>
-              </Tilt>
+                </div>
+              </motion.div>
+            )
+
+            return isMobile ? (
+              <div key={index}>{CardContent}</div>
+            ) : (
+              <Tilt key={index}>{CardContent}</Tilt>
             )
           })}
         </div>

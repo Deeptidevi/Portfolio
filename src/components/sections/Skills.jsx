@@ -251,14 +251,29 @@ export function Skills() {
   const [hoveredCard, setHoveredCard] = useState(null)
   const sectionRef = useRef(null)
   
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"]
   })
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest > 0.1) setLayoutMode("grid")
-    else setLayoutMode("stack")
+    if (isMobile) {
+      setLayoutMode("grid")
+    } else {
+      if (latest > 0.1) setLayoutMode("grid")
+      else setLayoutMode("stack")
+    }
   })
 
   const getStackPosition = (index) => ({
@@ -271,18 +286,15 @@ export function Skills() {
   })
 
   const getGridPosition = (index) => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-    
     if (isMobile) {
-      const row = index
-      const yGap = 340 
       return {
         x: 0,
-        y: (row - 2) * yGap + 100, 
-        scale: 0.8,
+        y: 0, 
+        scale: 1,
         rotate: 0,
         zIndex: 1,
-        opacity: 1
+        opacity: 1,
+        position: 'relative'
       }
     }
 
@@ -297,7 +309,8 @@ export function Skills() {
       scale: 1,
       rotate: 0,
       zIndex: 1,
-      opacity: 1
+      opacity: 1,
+      position: 'absolute'
     }
   }
 
@@ -305,10 +318,10 @@ export function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative bg-black z-50 overflow-visible"
-      style={{ height: "350vh" }}
+      className={`relative bg-black z-50 overflow-visible ${isMobile ? 'py-20' : ''}`}
+      style={{ height: isMobile ? 'auto' : "350vh" }}
     >
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
+      <div className={`${isMobile ? 'relative' : 'sticky top-0 h-screen'} flex flex-col items-center justify-center overflow-hidden bg-black`}>
         
         {/* Animated Background Particles */}
         <div className="absolute inset-0 pointer-events-none">
@@ -331,18 +344,20 @@ export function Skills() {
         </div>
 
         {/* Title */}
-        <div className="absolute top-4 w-full pt-4 pb-8 flex flex-col items-center z-[60] bg-gradient-to-b from-black via-black/80 to-transparent">
+        <div className={`${isMobile ? 'relative mb-12' : 'absolute top-4'} w-full pt-4 pb-8 flex flex-col items-center z-[60] bg-gradient-to-b from-black via-black/80 to-transparent`}>
           <TextReveal 
             text="Technical Skills" 
-            className="text-2xl md:text-4xl font-black tracking-tighter uppercase mb-1" 
+            className="text-3xl md:text-4xl font-black tracking-tighter uppercase mb-1 text-center" 
           />
-          <motion.div 
-            style={{ scaleX: scrollYProgress }}
-            className="w-24 h-1 bg-primary mx-auto rounded-full mt-2 origin-center" 
-          />
+          {!isMobile && (
+            <motion.div 
+              style={{ scaleX: scrollYProgress }}
+              className="w-24 h-1 bg-primary mx-auto rounded-full mt-2 origin-center" 
+            />
+          )}
         </div>
 
-        <div className="relative w-full h-full flex items-center justify-center pt-20">
+        <div className={`${isMobile ? 'flex flex-col gap-8 px-6' : 'relative w-full h-full flex items-center justify-center pt-20'}`}>
           {Object.entries(skills).map(([category, items], index) => {
             const Icon = icons[category]
             const Illustration = illustrations[category]
@@ -353,14 +368,16 @@ export function Skills() {
                 key={category}
                 onMouseEnter={() => setHoveredCard(category)}
                 onMouseLeave={() => setHoveredCard(null)}
-                initial={getStackPosition(index)}
+                initial={isMobile ? { opacity: 0, y: 20 } : getStackPosition(index)}
+                whileInView={isMobile ? { opacity: 1, y: 0 } : undefined}
+                viewport={isMobile ? { once: true } : undefined}
                 animate={
-                  layoutMode === "stack"
-                    ? getStackPosition(index)
-                    : getGridPosition(index)
+                  !isMobile 
+                    ? (layoutMode === "stack" ? getStackPosition(index) : getGridPosition(index))
+                    : undefined
                 }
-                whileHover={layoutMode === "grid" ? { 
-                  scale: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.85 : 1.05,
+                whileHover={!isMobile && layoutMode === "grid" ? { 
+                  scale: 1.05,
                   y: getGridPosition(index).y - 10,
                   transition: { duration: 0.3 }
                 } : {}}
@@ -370,13 +387,13 @@ export function Skills() {
                   damping: 15,
                   mass: 1
                 }}
-                className={`absolute w-[260px] md:w-[340px] h-[320px] md:h-[420px] rounded-[2rem] md:rounded-[3rem] p-5 md:p-8 border transition-all duration-500 flex flex-col items-center cursor-default
+                className={`${isMobile ? 'relative' : 'absolute'} w-full max-w-[340px] md:w-[340px] h-[380px] md:h-[420px] rounded-[2rem] md:rounded-[3rem] p-6 md:p-8 border transition-all duration-500 flex flex-col items-center cursor-default mx-auto
                   ${isHovered ? 'border-primary shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] bg-[#0f0f0f]' : 'border-white/10 bg-[#0a0a0a]'}
                 `}
               >
                 {/* Glow Effect */}
                 <AnimatePresence>
-                  {isHovered && (
+                  {(isHovered || isMobile) && (
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -391,9 +408,9 @@ export function Skills() {
                     animate={isHovered ? { rotate: 360 } : {}}
                     transition={{ duration: 0.5 }}
                   >
-                    <Icon className={`w-5 h-5 md:w-6 md:h-6 ${isHovered ? 'text-primary' : 'text-primary/60'}`} />
+                    <Icon className={`w-5 h-5 md:w-6 md:h-6 ${isHovered || isMobile ? 'text-primary' : 'text-primary/60'}`} />
                   </motion.div>
-                  <h3 className={`text-[12px] md:text-xl font-black tracking-tighter uppercase transition-colors ${isHovered ? 'text-white' : 'text-gray-400'}`}>
+                  <h3 className={`text-[14px] md:text-xl font-black tracking-tighter uppercase transition-colors ${isHovered || isMobile ? 'text-white' : 'text-gray-400'}`}>
                     {category}
                   </h3>
                 </div>
@@ -402,18 +419,18 @@ export function Skills() {
                   <Illustration />
                 </div>
 
-                <div className="grid grid-cols-2 gap-1.5 md:gap-2 w-full mt-3 md:mt-4 relative z-10">
+                <div className="grid grid-cols-2 gap-2 w-full mt-3 md:mt-4 relative z-10">
                   {items.map((item, i) => (
                     <motion.div
                       key={item}
                       initial={{ opacity: 0, y: 10 }}
-                      animate={layoutMode === "grid" ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                      animate={(layoutMode === "grid" || isMobile) ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                       transition={{ 
-                        delay: layoutMode === "grid" ? 0.1 + (i * 0.03) : 0,
+                        delay: (layoutMode === "grid" || isMobile) ? 0.1 + (i * 0.03) : 0,
                         duration: 0.3
                       }}
-                      className={`px-2 py-1.5 md:px-3 md:py-2 text-[8px] md:text-[11px] font-black uppercase tracking-widest rounded-lg md:rounded-xl border transition-all duration-300 flex items-center justify-center text-center
-                        ${isHovered ? 'bg-primary/10 border-primary/30 text-white' : 'bg-white/5 border-white/5 text-gray-500'}
+                      className={`px-2 py-1.5 md:px-3 md:py-2 text-[10px] md:text-[11px] font-black uppercase tracking-widest rounded-lg md:rounded-xl border transition-all duration-300 flex items-center justify-center text-center
+                        ${isHovered || isMobile ? 'bg-primary/10 border-primary/30 text-white' : 'bg-white/5 border-white/5 text-gray-500'}
                       `}
                     >
                       {item}

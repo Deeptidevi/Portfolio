@@ -5,6 +5,8 @@ import Lenis from "lenis"
 
 export function SmoothScroll({ children }) {
   useEffect(() => {
+    if (window.innerWidth < 768) return
+
     const lenis = new Lenis({
       lerp: 0.1,
       duration: 1.5,

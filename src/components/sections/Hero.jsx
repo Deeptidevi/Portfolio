@@ -62,7 +62,7 @@ export function Hero() {
               Full Stack Developer
             </motion.span>
             
-            <h1 className="text-5xl sm:text-8xl md:text-[11rem] font-black tracking-tight leading-[0.85] uppercase">
+            <h1 className="text-4xl sm:text-7xl md:text-[11rem] font-black tracking-tight leading-[0.85] uppercase">
               DEEPTI <br />
               <span className="text-outline">DEVI</span>
             </h1>

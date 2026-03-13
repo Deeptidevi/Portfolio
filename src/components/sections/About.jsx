@@ -80,8 +80,8 @@ export function About() {
     <section id="about" className="py-32 bg-black relative z-10 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center mb-24">
-          <TextReveal text="About Me" className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6" />
+        <div className="text-center mb-16 md:mb-24">
+          <TextReveal text="About Me" className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6" />
           <div className="w-24 h-1.5 bg-primary mx-auto rounded-full" />
         </div>
 
