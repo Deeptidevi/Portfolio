@@ -265,28 +265,28 @@ export function Projects() {
   const [hoveredIndex, setHoveredIndex] = useState(null)
 
   return (
-    <section id="projects" className="py-60 bg-black relative z-30 overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,1)]">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-24 flex flex-col items-center">
-          <TextReveal text="Featured Projects" className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6" />
+    <section id="projects" className="py-20 md:py-60 bg-black relative z-30 overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,1)]">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="text-center mb-16 md:mb-24 flex flex-col items-center">
+          <TextReveal text="Featured Projects" className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6" />
           <div className="w-24 h-1.5 bg-primary rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative">
           {/* Surprise Reflecting Light Streaks */}
           <motion.div
             initial={{ width: 0, opacity: 0, x: -100 }}
             whileInView={{ width: "300px", opacity: 0.1, x: 200 }}
             viewport={{ margin: "-100px" }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute -top-10 left-0 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent blur-sm pointer-events-none z-0"
+            className="absolute -top-10 left-0 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent blur-sm pointer-events-none z-0 hidden md:block"
           />
           <motion.div
             initial={{ width: 0, opacity: 0, x: 100 }}
             whileInView={{ width: "400px", opacity: 0.1, x: -200 }}
             viewport={{ margin: "-100px" }}
             transition={{ duration: 1.8, ease: "easeInOut", delay: 0.3 }}
-            className="absolute -bottom-10 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent blur-sm pointer-events-none z-0"
+            className="absolute -bottom-10 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent blur-sm pointer-events-none z-0 hidden md:block"
           />
 
           {projects.map((project, index) => {
@@ -310,30 +310,24 @@ export function Projects() {
                   onMouseMove={handleMouseMove}
                   initial={{ 
                     opacity: 0, 
-                    y: 100,
-                    scale: 0.8,
-                    rotateX: 45,
-                    z: -100
+                    y: 50,
+                    scale: 0.95
                   }}
                   whileInView={{ 
                     opacity: 1, 
                     y: 0,
-                    scale: 1,
-                    rotateX: 0,
-                    z: 0
+                    scale: 1
                   }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ 
-                    type: "spring",
-                    stiffness: 50,
-                    damping: 15,
-                    delay: index * 0.15 
+                    duration: 0.6,
+                    delay: index * 0.1 
                   }}
-                  className="group relative h-[500px] rounded-[3rem] overflow-hidden border border-white/5 bg-[#0a0a0a] shadow-2xl perspective-1000"
+                  className="group relative h-[450px] md:h-[500px] rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/5 bg-[#0a0a0a] shadow-2xl"
                 >
-                  {/* Spotlight Effect */}
+                  {/* Spotlight Effect - Hidden on Mobile */}
                   <motion.div 
-                    className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:block"
                     style={{
                       background: useTransform(
                         [mouseX, mouseY],
@@ -355,39 +349,39 @@ export function Projects() {
                   ) : (
                     <div className="absolute inset-0 bg-[#0a0a0a]" />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90" />
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-40 transition-opacity duration-700`} />
 
-                  {/* Animation Overlay */}
-                  <div className="absolute inset-0 z-15 pointer-events-none">
+                  {/* Animation Overlay - Scaled for Mobile */}
+                  <div className="absolute inset-0 z-15 pointer-events-none scale-75 md:scale-100 origin-center">
                     <Animation mousePos={{ x: mouseX, y: mouseY }} />
                   </div>
 
                   {/* Content Overlay */}
-                  <div className="absolute inset-0 p-10 flex flex-col justify-end z-20">
-                    <div className="flex flex-wrap gap-2 mb-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end z-20">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
                       {project.tags.map(tag => (
-                        <span key={tag} className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-white/80">
+                        <span key={tag} className="px-3 md:px-4 py-1 md:py-1.5 text-[8px] md:text-[10px] font-bold uppercase tracking-wider rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-white/80">
                           {tag}
                         </span>
                       ))}
                     </div>
                     
-                    <h3 className="text-3xl font-bold mb-3 tracking-tighter transition-all duration-500 group-hover:text-primary">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2 md:mb-3 tracking-tighter group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
                     
-                    <p className="text-gray-400 text-sm mb-8 leading-relaxed line-clamp-2 transform translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
+                    <p className="text-gray-400 text-xs md:text-sm mb-6 md:mb-8 leading-relaxed line-clamp-3 md:line-clamp-2">
                       {project.description}
                     </p>
 
-                    <div className="flex gap-4 transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-100">
-                      <a href={project.github} className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300 backdrop-blur-xl text-xs font-bold uppercase tracking-widest">
-                        <Github className="w-4 h-4" />
+                    <div className="flex gap-3 md:gap-4">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-white/5 border border-white/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300 backdrop-blur-xl text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                        <Github className="w-3.5 md:w-4 h-3.5 md:h-4" />
                         Code
                       </a>
-                      <a href={project.live} className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300 text-xs font-bold uppercase tracking-widest">
-                        <ExternalLink className="w-4 h-4" />
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-primary text-primary-foreground rounded-full hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                        <ExternalLink className="w-3.5 md:w-4 h-3.5 md:h-4" />
                         Live
                       </a>
                     </div>

@@ -275,11 +275,11 @@ export function Skills() {
     
     if (isMobile) {
       const row = index
-      const yGap = 420 
+      const yGap = 340 
       return {
         x: 0,
-        y: (row - 2) * yGap + 150, 
-        scale: 0.9,
+        y: (row - 2) * yGap + 100, 
+        scale: 0.8,
         rotate: 0,
         zIndex: 1,
         opacity: 1
@@ -306,7 +306,7 @@ export function Skills() {
       ref={sectionRef}
       id="skills"
       className="relative bg-black z-50 overflow-visible"
-      style={{ height: "250vh" }}
+      style={{ height: "350vh" }}
     >
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
         
@@ -342,7 +342,7 @@ export function Skills() {
           />
         </div>
 
-        <div className="relative w-full h-full flex items-center justify-center">
+        <div className="relative w-full h-full flex items-center justify-center pt-20">
           {Object.entries(skills).map(([category, items], index) => {
             const Icon = icons[category]
             const Illustration = illustrations[category]
@@ -360,7 +360,7 @@ export function Skills() {
                     : getGridPosition(index)
                 }
                 whileHover={layoutMode === "grid" ? { 
-                  scale: 1.05,
+                  scale: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.85 : 1.05,
                   y: getGridPosition(index).y - 10,
                   transition: { duration: 0.3 }
                 } : {}}
@@ -370,7 +370,7 @@ export function Skills() {
                   damping: 15,
                   mass: 1
                 }}
-                className={`absolute w-[280px] md:w-[340px] h-[380px] md:h-[420px] rounded-[3rem] p-6 md:p-8 border transition-all duration-500 flex flex-col items-center cursor-default
+                className={`absolute w-[260px] md:w-[340px] h-[320px] md:h-[420px] rounded-[2rem] md:rounded-[3rem] p-5 md:p-8 border transition-all duration-500 flex flex-col items-center cursor-default
                   ${isHovered ? 'border-primary shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] bg-[#0f0f0f]' : 'border-white/10 bg-[#0a0a0a]'}
                 `}
               >
@@ -381,28 +381,28 @@ export function Skills() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="absolute inset-0 rounded-[3rem] bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"
+                      className="absolute inset-0 rounded-[2rem] md:rounded-[3rem] bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"
                     />
                   )}
                 </AnimatePresence>
 
-                <div className="flex items-center gap-4 mb-4 relative z-10">
+                <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4 relative z-10">
                   <motion.div
                     animate={isHovered ? { rotate: 360 } : {}}
                     transition={{ duration: 0.5 }}
                   >
-                    <Icon className={`w-6 h-6 ${isHovered ? 'text-primary' : 'text-primary/60'}`} />
+                    <Icon className={`w-5 h-5 md:w-6 md:h-6 ${isHovered ? 'text-primary' : 'text-primary/60'}`} />
                   </motion.div>
-                  <h3 className={`text-sm md:text-xl font-black tracking-tighter uppercase transition-colors ${isHovered ? 'text-white' : 'text-gray-400'}`}>
+                  <h3 className={`text-[12px] md:text-xl font-black tracking-tighter uppercase transition-colors ${isHovered ? 'text-white' : 'text-gray-400'}`}>
                     {category}
                   </h3>
                 </div>
 
-                <div className="flex-grow flex items-center justify-center w-full scale-[0.9] relative z-10">
+                <div className="flex-grow flex items-center justify-center w-full scale-[0.7] md:scale-[0.9] relative z-10">
                   <Illustration />
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 w-full mt-4 relative z-10">
+                <div className="grid grid-cols-2 gap-1.5 md:gap-2 w-full mt-3 md:mt-4 relative z-10">
                   {items.map((item, i) => (
                     <motion.div
                       key={item}
@@ -412,7 +412,7 @@ export function Skills() {
                         delay: layoutMode === "grid" ? 0.1 + (i * 0.03) : 0,
                         duration: 0.3
                       }}
-                      className={`px-3 py-2 text-[9px] md:text-[11px] font-black uppercase tracking-widest rounded-xl border transition-all duration-300 flex items-center justify-center text-center
+                      className={`px-2 py-1.5 md:px-3 md:py-2 text-[8px] md:text-[11px] font-black uppercase tracking-widest rounded-lg md:rounded-xl border transition-all duration-300 flex items-center justify-center text-center
                         ${isHovered ? 'bg-primary/10 border-primary/30 text-white' : 'bg-white/5 border-white/5 text-gray-500'}
                       `}
                     >
