@@ -11,7 +11,6 @@ const projects = [
     title: "Offline Help - AI Chatbot",
     description: "Developed an advanced offline chatbot with local NLP capabilities, ensuring 100% data privacy and zero latency. Features include intelligent query handling, multi-language support, and a sleek interactive UI with real-time feedback. Optimized for low resource consumption while maintaining high accuracy in intent recognition.",
     tags: ["React", "NLP", "Local Storage", "Framer Motion", "Tailwind"],
-    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd05a?q=80&w=2012&auto=format&fit=crop",
     github: "https://github.com/Deeptidevi",
     live: "https://github.com/Deeptidevi",
     color: "from-purple-500/20 to-indigo-500/20",
@@ -21,7 +20,6 @@ const projects = [
     title: "Pharm Flow - Online Pharmacy",
     description: "Built a full-stack pharmacy e-commerce platform using React, Node.js, Express, and MongoDB Atlas. Implemented REST APIs and integrated database models for medicines, users, orders and cart. Designed a responsive user interface improving navigation and reducing user actions to checkout by ~30%. Optimized backend data handling, improving page load and API response efficiency by ~40%.",
     tags: ["React", "Node.js", "Express", "MongoDB Atlas", "JavaScript", "GitHub"],
-    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=2070&auto=format&fit=crop",
     github: "https://github.com/Deeptidevi",
     live: "https://pharmacy-store-frontend-roan.vercel.app/",
     color: "from-blue-500/20 to-cyan-500/20",
@@ -31,7 +29,6 @@ const projects = [
     title: "Ludo Mazza - Game",
     description: "Constructed a real-time multiplayer UI using React.js and Tailwind CSS, efficiently handling complex state-driven game logic with optimized component rendering. Architected a reusable, scalable design patterns, minimizing code redundancy, and enabling faster feature development across multiple screens and devices. Enhanced performance and responsiveness through controlled re-renders, and real-time interactive updates.",
     tags: ["React.js", "Tailwind CSS", "VS Code"],
-    image: "https://images.unsplash.com/photo-1611996598518-d767b202482c?q=80&w=2070&auto=format&fit=crop", 
     github: "https://github.com/Deeptidevi",
     live: "https://github.com/Deeptidevi",
     color: "from-orange-500/20 to-red-500/20",
@@ -41,7 +38,6 @@ const projects = [
     title: "Nits Construction Website",
     description: "Developed a responsive PHP/MySQL website, driving a 40% increase in user engagement. Created dynamic service modules and lead-capture forms, increasing lead conversion by 25% and reducing data processing time by 30%. Delivered the full project lifecycle independently, delivering a production-ready solution for a paid client.",
     tags: ["PHP", "MySQL", "JavaScript", "Tailwind"],
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?q=80&w=2070&auto=format&fit=crop",
     github: "https://github.com/Deeptidevi",
     live: "https://nitsconstructionltd.co.uk/",
     color: "from-emerald-500/20 to-teal-500/20",
@@ -51,7 +47,6 @@ const projects = [
     title: "Margchakra - Crew Management",
     description: "Architected a premium logistics and crew management solution for SIH 2024. MargChakra optimizes routes and streamlines complex logistics using data-driven insights. It empowers operators with tools for operational excellence, making crew management and bus travel experiences seamless, efficient, and highly optimized through advanced route optimization algorithms.",
     tags: ["React", "SIH 2024", "Logistics", "Vercel", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
     github: "https://github.com/Deeptidevi/Mystic-Mavericks-SIH-2024",
     live: "https://mystic-mavericks-sih-2024.vercel.app/",
     color: "from-amber-500/20 to-orange-500/20",
@@ -112,19 +107,8 @@ export function Projects() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group relative h-[400px] md:h-[550px] rounded-[2rem] overflow-hidden border border-white/10 bg-[#0a0a0a] transition-all duration-500"
               >
-                {/* Image Layer */}
-                <div 
-                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
-                  style={{
-                    backgroundImage: `url(${project.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                />
-                
-                {/* Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/20 opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
+                {/* Gradient Glow */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-10 group-hover:opacity-30 transition-opacity duration-500`} />
 
                 {/* Content */}
                 <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
