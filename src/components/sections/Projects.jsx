@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { ExternalLink, Github, ArrowUpRight, Bot, Pill, Dice5, Building2 } from "lucide-react"
+import { ExternalLink, Github, ArrowUpRight, Bot, Pill, Dice5, Building2, Map } from "lucide-react"
 import { TextReveal } from "../ui/TextReveal"
 import { useState, useRef, useEffect } from "react"
 import { Tilt } from "../ui/Tilt"
@@ -46,6 +46,16 @@ const projects = [
     live: "https://nitsconstructionltd.co.uk/",
     color: "from-emerald-500/20 to-teal-500/20",
     icon: Building2
+  },
+  {
+    title: "Margchakra - Crew Management",
+    description: "Architected a premium logistics and crew management solution for SIH 2024. MargChakra optimizes routes and streamlines complex logistics using data-driven insights. It empowers operators with tools for operational excellence, making crew management and bus travel experiences seamless, efficient, and highly optimized through advanced route optimization algorithms.",
+    tags: ["React", "SIH 2024", "Logistics", "Vercel", "Tailwind CSS"],
+    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
+    github: "https://github.com/Deeptidevi/Mystic-Mavericks-SIH-2024",
+    live: "https://mystic-mavericks-sih-2024.vercel.app/",
+    color: "from-amber-500/20 to-orange-500/20",
+    icon: Map
   }
 ]
 
