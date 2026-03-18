@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { ExternalLink, Github, ArrowUpRight } from "lucide-react"
+import { ExternalLink, Github, ArrowUpRight, Bot, Pill, Dice5, Building2 } from "lucide-react"
 import { TextReveal } from "../ui/TextReveal"
 import { useState, useRef, useEffect } from "react"
 import { Tilt } from "../ui/Tilt"
@@ -14,7 +14,8 @@ const projects = [
     image: "https://images.unsplash.com/photo-1531746790731-6c087fecd05a?q=80&w=2012&auto=format&fit=crop",
     github: "https://github.com/Deeptidevi",
     live: "https://github.com/Deeptidevi",
-    color: "from-purple-500/20 to-indigo-500/20"
+    color: "from-purple-500/20 to-indigo-500/20",
+    icon: Bot
   },
   {
     title: "Pharm Flow - Online Pharmacy",
@@ -23,7 +24,8 @@ const projects = [
     image: "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=2070&auto=format&fit=crop",
     github: "https://github.com/Deeptidevi",
     live: "https://pharmacy-store-frontend-roan.vercel.app/",
-    color: "from-blue-500/20 to-cyan-500/20"
+    color: "from-blue-500/20 to-cyan-500/20",
+    icon: Pill
   },
   {
     title: "Ludo Mazza - Game",
@@ -32,7 +34,8 @@ const projects = [
     image: "https://images.unsplash.com/photo-1611996598518-d767b202482c?q=80&w=2070&auto=format&fit=crop", 
     github: "https://github.com/Deeptidevi",
     live: "https://github.com/Deeptidevi",
-    color: "from-orange-500/20 to-red-500/20"
+    color: "from-orange-500/20 to-red-500/20",
+    icon: Dice5
   },
   {
     title: "Nits Construction Website",
@@ -41,7 +44,8 @@ const projects = [
     image: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?q=80&w=2070&auto=format&fit=crop",
     github: "https://github.com/Deeptidevi",
     live: "https://nitsconstructionltd.co.uk/",
-    color: "from-emerald-500/20 to-teal-500/20"
+    color: "from-emerald-500/20 to-teal-500/20",
+    icon: Building2
   }
 ]
 
@@ -85,6 +89,8 @@ export function Projects() {
               mouseY.set(e.clientY - rect.top)
             }
 
+            const Icon = project.icon
+
             const CardContent = (
               <motion.div
                 ref={cardRef}
@@ -112,6 +118,12 @@ export function Projects() {
 
                 {/* Content */}
                 <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
+                  <div 
+                    className="absolute top-8 right-8 w-16 h-16 md:w-24 md:h-24 text-white/10 group-hover:text-primary/20 transition-colors duration-500"
+                  >
+                    <Icon strokeWidth={1} className="w-full h-full" />
+                  </div>
+
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tags.map(tag => (
                       <span key={tag} className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white/90">
