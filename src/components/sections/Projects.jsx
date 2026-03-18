@@ -118,9 +118,8 @@ export function Projects() {
 
                 {/* Content */}
                 <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
-                  <div 
-                    className="absolute top-8 right-8 w-16 h-16 md:w-24 md:h-24 text-white/10 group-hover:text-primary/20 transition-colors duration-500"
-                  >
+                  <div className="absolute top-8 right-8 w-16 h-16 md:w-24 md:h-24 text-white/10 group-hover:text-primary/20 transition-colors duration-500 transform-gpu group-hover:scale-110 group-hover:rotate-12">
+                    <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${project.color} opacity-30 group-hover:opacity-50 transition-opacity duration-500 blur-lg`} />
                     <Icon strokeWidth={1} className="w-full h-full" />
                   </div>
 
