@@ -1,10 +1,9 @@
 "use client"
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import { ExternalLink, Github, ArrowUpRight, Bot, Pill, Dice5, Building2, Map } from "lucide-react"
 import { TextReveal } from "../ui/TextReveal"
-import { useState, useRef, useEffect } from "react"
-import { Tilt } from "../ui/Tilt"
+import { useState, useEffect } from "react"
 
 const projects = [
   {
@@ -83,23 +82,11 @@ export function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
           {projects.map((project, index) => {
-            const cardRef = useRef(null)
-            const mouseX = useMotionValue(0)
-            const mouseY = useMotionValue(0)
-
-            const handleMouseMove = (e) => {
-              if (!cardRef.current) return
-              const rect = cardRef.current.getBoundingClientRect()
-              mouseX.set(e.clientX - rect.left)
-              mouseY.set(e.clientY - rect.top)
-            }
-
             const Icon = project.icon
 
-            const CardContent = (
+            return (
               <motion.div
-                ref={cardRef}
-                onMouseMove={handleMouseMove}
+                key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -10 }}
@@ -112,7 +99,7 @@ export function Projects() {
 
                 {/* Content */}
                 <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
-                  <div className="absolute top-8 right-8 w-16 h-16 md:w-24 md:h-24 text-white/10 group-hover:text-primary/20 transition-colors duration-500 transform-gpu group-hover:scale-110 group-hover:rotate-12">
+                  <div className="absolute top-8 right-8 w-16 h-16 md:w-24 md:h-24 text-white/10 group-hover:text-primary/20 transition-all duration-500 transform-gpu group-hover:scale-110 group-hover:rotate-12">
                     <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${project.color} opacity-30 group-hover:opacity-50 transition-opacity duration-500 blur-lg`} />
                     <Icon strokeWidth={1} className="w-full h-full" />
                   </div>
@@ -158,12 +145,6 @@ export function Projects() {
                 {/* Subtle border shine on hover */}
                 <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/20 transition-all duration-500 rounded-[2rem] pointer-events-none" />
               </motion.div>
-            )
-
-            return isMobile ? (
-              <div key={index}>{CardContent}</div>
-            ) : (
-              <Tilt key={index}>{CardContent}</Tilt>
             )
           })}
         </div>
