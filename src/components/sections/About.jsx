@@ -342,17 +342,6 @@ export function About() {
                     >
                       2023 – Present
                     </motion.span>
-                    
-                    <motion.span
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 1 }}
-                      whileHover={{ scale: 1.1 }}
-                      className="px-3 py-1 bg-primary/10 text-primary rounded-full font-medium"
-                    >
-                      CGPA: 6.3
-                    </motion.span>
                   </motion.div>
                 </motion.div>
               </div>
