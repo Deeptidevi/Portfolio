@@ -115,7 +115,7 @@ export function Hero() {
               {/* Image Container with Professional Masking */}
               <div className="relative w-full h-full rounded-[3.5rem] overflow-hidden border border-white/5 shadow-2xl group">
                 <motion.img 
-                  src="/profile.png" 
+                src="/Gemini_Generated_Image_70wci470wci470.png" 
                   alt="Deepti Devi"
                   className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
                   style={{
