@@ -108,53 +108,51 @@ export function Hero() {
             className="relative hidden lg:flex items-center justify-center h-full pt-20"
           >
             <div className="relative w-full aspect-[3/4] max-w-md">
-              {/* Background Glows */}
-              <div className="absolute -inset-4 bg-primary/20 blur-[100px] rounded-full opacity-50 animate-pulse" />
-              <div className="absolute -inset-4 bg-secondary/10 blur-[80px] rounded-full opacity-30 delay-700 animate-pulse" />
+              {/* Background Glows matching the image bokeh */}
+              <div className="absolute -inset-10 bg-amber-500/20 blur-[120px] rounded-full opacity-50 animate-pulse" />
+              <div className="absolute -inset-10 bg-indigo-500/20 blur-[100px] rounded-full opacity-30 delay-1000 animate-pulse" />
               
               {/* The Image with Masking */}
-              <div className="relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 group">
+              <div className="relative w-full h-full rounded-[3rem] overflow-hidden border border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.5)] group">
                 <motion.img 
                   src="/profile.png" 
                   alt="Deepti Devi"
-                  className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
                   style={{
-                    maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%), linear-gradient(to right, black 80%, transparent 100%)',
-                    WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
+                    WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
+                    maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)'
                   }}
                 />
                 
-                {/* Overlay Gradient to blend even better */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent opacity-60" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#030303]/20 via-transparent to-transparent opacity-40" />
+                {/* Creative Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[3rem]" />
               </div>
 
-              {/* Decorative elements */}
+              {/* Decorative elements with improved glassmorphism */}
               <motion.div 
                 animate={{ 
-                  y: [0, -20, 0],
-                  rotate: [0, 5, 0]
+                  y: [0, -15, 0],
                 }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center justify-center z-10"
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-6 -right-6 w-28 h-28 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl flex items-center justify-center z-10 shadow-2xl"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-black text-primary">2+</div>
-                  <div className="text-[8px] uppercase tracking-tighter font-bold text-white/60">Years of<br/>Exp.</div>
+                  <div className="text-3xl font-black text-amber-500">2+</div>
+                  <div className="text-[9px] uppercase tracking-wider font-bold text-white/70">Years of<br/>Experience</div>
                 </div>
               </motion.div>
 
               <motion.div 
                 animate={{ 
-                  y: [0, 20, 0],
-                  rotate: [0, -5, 0]
+                  y: [0, 15, 0],
                 }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-10 -left-10 w-40 h-20 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center justify-center z-10 px-6"
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute -bottom-6 -left-6 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl flex items-center justify-center z-10 px-6 py-4 shadow-2xl"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <div className="text-[10px] uppercase tracking-widest font-bold text-white/80">Available to Hire</div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)] animate-pulse" />
+                  <div className="text-xs uppercase tracking-widest font-black text-white/90">Available</div>
                 </div>
               </motion.div>
             </div>
