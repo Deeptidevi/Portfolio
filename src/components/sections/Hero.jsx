@@ -35,10 +35,10 @@ export function Hero() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
-            className="max-w-4xl"
+            className="max-w-4xl text-left"
           >
             {/* Main Headline Design */}
-            <div className="flex flex-col mb-12 text-left">
+            <div className="flex flex-col mb-12">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -74,7 +74,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-gray-400 text-lg md:text-xl max-w-md leading-relaxed font-medium text-left"
+                className="text-gray-400 text-lg md:text-xl max-w-md leading-relaxed font-medium"
               >
                 Crafting immersive digital experiences through clean code and innovative design. Specializing in high-end web applications.
               </motion.p>
@@ -100,7 +100,7 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Professional Hero Image Integration */}
+          {/* Professional Hero Image Section */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8, x: 50 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -108,14 +108,14 @@ export function Hero() {
             className="relative hidden lg:flex items-center justify-center h-full pt-10"
           >
             <div className="relative w-full aspect-[3/4] max-w-md">
-              {/* Background Glows matching the image bokeh (Amber & Indigo) */}
+              {/* Background Glows matching the guitar bokeh (Amber & Indigo) */}
               <div className="absolute -inset-10 bg-amber-500/20 blur-[120px] rounded-full opacity-50 animate-pulse" />
               <div className="absolute -inset-10 bg-indigo-500/20 blur-[100px] rounded-full opacity-30 delay-1000 animate-pulse" />
               
-              {/* Image Container with Professional Masking */}
+              {/* The Image Container with Professional Masking */}
               <div className="relative w-full h-full rounded-[3.5rem] overflow-hidden border border-white/5 shadow-2xl group">
                 <motion.img 
-                  src="/profile.png" 
+                  src="/me.png" 
                   alt="Deepti Devi"
                   className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
                   style={{
@@ -124,12 +124,12 @@ export function Hero() {
                   }}
                 />
                 
-                {/* Blending Overlays */}
+                {/* Creative Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent opacity-80" />
                 <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[3.5rem]" />
               </div>
 
-              {/* Glassmorphism Badge: Experience */}
+              {/* Decorative Badges */}
               <motion.div 
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -141,7 +141,6 @@ export function Hero() {
                 </div>
               </motion.div>
 
-              {/* Glassmorphism Badge: Availability */}
               <motion.div 
                 animate={{ y: [0, 15, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
