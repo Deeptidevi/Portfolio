@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Clouds } from "../ui/Clouds"
-import { ArrowRight } from "lucide-react"
+import { Github, Linkedin, FileDown, ArrowRight, Music, Sparkles } from "lucide-react"
 import { Magnetic } from "../ui/Magnetic"
 
 export function Hero() {
@@ -88,55 +88,78 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* RIGHT IMAGE (PROFESSIONAL CONTRASTED SECTION) */}
+          {/* RIGHT IMAGE (CREATIVE & PROFESSIONAL REDESIGN) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8, x: 50 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
             className="relative hidden lg:flex items-center justify-center h-full"
           >
-            <div className="relative w-full aspect-[3/4] max-w-md">
-              {/* High-Contrast Glows */}
-              <div className="absolute -inset-10 bg-indigo-500/30 blur-[120px] rounded-full opacity-50 animate-pulse" />
-              <div className="absolute -inset-10 bg-amber-500/20 blur-[100px] rounded-full opacity-30 delay-1000 animate-pulse" />
+            <div className="relative w-full aspect-[4/5] max-w-lg">
+              {/* Artistic Background Glows */}
+              <div className="absolute -inset-20 bg-indigo-500/20 blur-[140px] rounded-full opacity-60 animate-pulse" />
+              <div className="absolute -inset-20 bg-amber-500/15 blur-[120px] rounded-full opacity-40 delay-1000 animate-pulse" />
               
-              {/* Professional Image Wrapper */}
-              <div className="relative w-full h-full rounded-[3rem] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] group">
-                <motion.img 
-                  src="/myP.png" 
-                  alt="Deepti Devi"
-                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
-                  style={{
-                    WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
-                    maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)'
-                  }}
-                />
+              {/* Creative Floating Elements */}
+              <motion.div 
+                animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-10 -left-10 z-30 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+              >
+                <Music className="w-6 h-6 text-amber-400" />
+              </motion.div>
+
+              <motion.div 
+                animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute top-1/2 -right-12 z-30 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+              >
+                <Sparkles className="w-6 h-6 text-indigo-400" />
+              </motion.div>
+
+              {/* Main Image Container */}
+              <div className="relative w-full h-full group">
+                {/* Secondary Decorative Frame */}
+                <div className="absolute inset-4 border border-white/10 rounded-[4rem] -rotate-3 group-hover:rotate-0 transition-transform duration-700 pointer-events-none" />
                 
-                {/* Contrast Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent opacity-80" />
-                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[3rem]" />
+                {/* Primary Image Wrapper */}
+                <div className="relative w-full h-full rounded-[3.5rem] overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.6)] group-hover:border-primary/30 transition-colors duration-500">
+                  <motion.img 
+                    src="/myP.png" 
+                    alt="Deepti Devi"
+                    className="w-full h-full object-cover object-top transition-all duration-1000 group-hover:scale-110"
+                    style={{
+                      WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)',
+                      maskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)'
+                    }}
+                  />
+                  
+                  {/* Subtle Contrast Overlays (Lightened at bottom to show guitar) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/60 via-transparent to-transparent opacity-60" />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[3.5rem]" />
+                </div>
               </div>
 
-              {/* Professional Floating Badges */}
+              {/* Floating Badges */}
               <motion.div 
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-6 -right-6 w-28 h-28 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl flex items-center justify-center z-10 shadow-2xl"
+                className="absolute top-10 -right-6 px-6 py-3 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl z-30 shadow-2xl"
               >
                 <div className="text-center">
-                  <div className="text-3xl font-black text-amber-500">2+</div>
-                  <div className="text-[9px] uppercase tracking-wider font-bold text-white/70">Years of<br/>Experience</div>
+                  <div className="text-xl font-black text-amber-500">2+ Years</div>
+                  <div className="text-[8px] uppercase tracking-wider font-bold text-white/60 text-left">Experience</div>
                 </div>
               </motion.div>
 
               <motion.div 
                 animate={{ y: [0, 15, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute -bottom-6 -left-6 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl flex items-center justify-center z-10 px-6 py-4 shadow-2xl"
+                className="absolute bottom-10 -left-6 px-6 py-3 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl z-30 shadow-2xl"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)] animate-pulse" />
-                  <div className="text-xs uppercase tracking-widest font-black text-white/90">Available</div>
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)] animate-pulse" />
+                  <div className="text-[10px] uppercase tracking-widest font-black text-white/90">Available to hire</div>
                 </div>
               </motion.div>
             </div>
