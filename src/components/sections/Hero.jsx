@@ -128,30 +128,6 @@ export function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent opacity-80" />
                 <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[3.5rem]" />
               </div>
-
-              {/* Decorative Badges */}
-              <motion.div 
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-6 -right-6 w-28 h-28 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl flex items-center justify-center z-10 shadow-2xl"
-              >
-                <div className="text-center">
-                  <div className="text-3xl font-black text-amber-500">2+</div>
-                  <div className="text-[9px] uppercase tracking-wider font-bold text-white/70">Years of<br/>Experience</div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                animate={{ y: [0, 15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute -bottom-6 -left-6 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl flex items-center justify-center z-10 px-6 py-4 shadow-2xl"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)] animate-pulse" />
-                  <div className="text-xs uppercase tracking-widest font-black text-white/90">Available</div>
-                </div>
-              </motion.div>
-            </div>
           </motion.div>
         </div>
       </div>
