@@ -155,7 +155,7 @@ export function Hero() {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)] animate-pulse" />
-                  <div className="text-[10px] uppercase tracking-widest font-black text-white/90">Available to hire</div>
+                  <div className="text-[10px] uppercase tracking-widest font-black text-white/90">Available to Work</div>
                 </div>
               </motion.div>
             </div>

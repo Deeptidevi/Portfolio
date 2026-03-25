@@ -28,7 +28,7 @@ export function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-[5000] transition-all duration-300 ${
-        isScrolled ? "py-4 bg-background/80 backdrop-blur-md border-b border-white/5" : "py-8 bg-transparent"
+        isScrolled ? "py-4 bg-background/80 backdrop-blur-md border-b border-white/5" : "py-6 bg-black/20 backdrop-blur-sm"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">

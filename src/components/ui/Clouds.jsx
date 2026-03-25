@@ -74,7 +74,7 @@ export function Clouds() {
       <motion.div 
         variants={rightToLeft}
         animate="animate"
-        className="absolute top-[-5%] w-[600px] h-[300px]"
+        className="absolute top-[5%] w-[600px] h-[300px]"
         style={{ animationDelay: '-12s' }}
       >
         <div className="relative w-full h-full opacity-30">
