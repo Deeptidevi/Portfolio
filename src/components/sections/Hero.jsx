@@ -30,43 +30,43 @@ export function Hero() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto w-full px-6 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-[1440px] mx-auto w-full px-6 grid lg:grid-cols-2 gap-16 items-center">
 
         {/* LEFT */}
         <div>
 
           {/* GREEN DOT */}
-          <div className="flex items-center gap-3 mb-4">
-            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-            <p className="text-[11px] tracking-[0.25em] text-emerald-400 uppercase font-semibold">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></span>
+            <p className="text-[12px] tracking-[0.3em] text-emerald-400 uppercase font-bold">
               Available for new opportunities
             </p>
           </div>
 
           {/* ROLE */}
-          <p className="text-xs tracking-[0.4em] uppercase text-white/80 mb-6">
+          <p className="text-sm tracking-[0.5em] uppercase text-white/80 mb-8">
             Full Stack Developer
           </p>
 
           {/* NAME */}
-          <h1 className="text-[5rem] md:text-[8rem] leading-[0.85] font-extrabold tracking-[-0.04em] mb-6">
+          <h1 className="text-[6rem] md:text-[10rem] leading-[0.8] font-extrabold tracking-[-0.05em] mb-8">
             DEEPTI <br /> <span className="text-outline">DEVI</span>
           </h1>
 
           {/* DESC */}
-          <p className="text-gray-400 max-w-sm text-base leading-relaxed mb-10">
+          <p className="text-gray-400 max-w-md text-lg md:text-xl leading-relaxed font-medium mb-12">
             Crafting immersive digital experiences through clean code and innovative design. Specializing in high-end web applications.
           </p>
 
           {/* BUTTON */}
           <Magnetic strength={0.2}>
-            <div className="flex items-center gap-4 cursor-pointer group">
-              <span className="uppercase text-xs tracking-[0.3em] font-bold">
+            <div className="flex items-center gap-6 cursor-pointer group">
+              <span className="uppercase text-sm tracking-[0.4em] font-black">
                 View Work
               </span>
 
-              <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white transition">
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+              <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white transition-all duration-500">
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform" />
               </div>
             </div>
           </Magnetic>
@@ -76,10 +76,10 @@ export function Hero() {
         <div className="relative flex justify-center">
 
           {/* GLOW */}
-          <div className="absolute w-[500px] h-[500px] bg-indigo-500/20 blur-[140px] rounded-full"></div>
-          <div className="absolute w-[400px] h-[400px] bg-amber-500/10 blur-[120px] rounded-full translate-x-20"></div>
+          <div className="absolute w-[600px] h-[600px] bg-indigo-500/20 blur-[160px] rounded-full"></div>
+          <div className="absolute w-[500px] h-[500px] bg-amber-500/10 blur-[140px] rounded-full translate-x-20"></div>
 
-          <div className="relative w-[340px] h-[520px] rounded-[2.5rem] overflow-hidden border border-white/10 group">
+          <div className="relative w-[420px] h-[620px] rounded-[3rem] overflow-hidden border border-white/10 group">
 
             <img
               src="/myP.png"
@@ -122,7 +122,7 @@ export function Hero() {
             >
               <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
               <span className="text-[10px] uppercase tracking-widest font-bold">
-                Available to hire
+                Available to Work
               </span>
             </motion.div>
 
