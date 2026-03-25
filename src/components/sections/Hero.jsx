@@ -88,14 +88,14 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* RIGHT IMAGE (CREATIVE & PROFESSIONAL REDESIGN) */}
+          {/* RIGHT IMAGE (MAXIMUM VISIBILITY FOR GUITAR) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8, x: 50 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
             className="relative hidden lg:flex items-center justify-center h-full"
           >
-            <div className="relative w-full aspect-[4/5] max-w-lg">
+            <div className="relative w-full aspect-[2/3] max-w-lg">
               {/* Artistic Background Glows */}
               <div className="absolute -inset-20 bg-indigo-500/20 blur-[140px] rounded-full opacity-60 animate-pulse" />
               <div className="absolute -inset-20 bg-amber-500/15 blur-[120px] rounded-full opacity-40 delay-1000 animate-pulse" />
@@ -127,15 +127,11 @@ export function Hero() {
                   <motion.img 
                     src="/myP.png" 
                     alt="Deepti Devi"
-                    className="w-full h-full object-cover object-top transition-all duration-1000 group-hover:scale-110"
-                    style={{
-                      WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)',
-                      maskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)'
-                    }}
+                    className="w-full h-full object-cover object-center transition-all duration-1000 group-hover:scale-110"
                   />
                   
-                  {/* Subtle Contrast Overlays (Lightened at bottom to show guitar) */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/60 via-transparent to-transparent opacity-60" />
+                  {/* High-End Glass Effect Overlay */}
+                  <div className="absolute inset-0 bg-white/5 mix-blend-overlay pointer-events-none" />
                   <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[3.5rem]" />
                 </div>
               </div>
