@@ -62,7 +62,7 @@ export function About() {
               </div>
               <div>
                 <div className="text-sm font-black text-stone-900 leading-tight">
-                  B.Tech CSE (2023–2026)
+                  B.Tech CSE (2023–2027)
                 </div>
                 <div className="text-xs font-mono text-stone-500 mt-0.5">
                   Lovely Professional University
