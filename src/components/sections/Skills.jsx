@@ -150,26 +150,6 @@ export function Skills() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* ========================================================================= */}
-        {/* TOP EYEBROW BAR: "03 — MY SKILLS" & "/ BUILD / LEARN / GROW" */}
-        {/* ========================================================================= */}
-        <div className="flex items-center justify-between text-[11px] font-mono tracking-widest text-stone-500 uppercase pb-6 mb-8 border-b border-stone-200/80">
-          <div className="flex items-center gap-2">
-            <span>03</span>
-            <span className="text-stone-300">—</span>
-            <span className="font-bold text-stone-700">MY SKILLS</span>
-          </div>
-
-          <div className="flex items-center gap-2 text-stone-400 font-semibold">
-            <span>/</span>
-            <span>BUILD</span>
-            <span>/</span>
-            <span>LEARN</span>
-            <span>/</span>
-            <span>GROW</span>
-          </div>
-        </div>
-
-        {/* ========================================================================= */}
         {/* MAIN HEADLINE & INTRO SUMMARY + RIGHT CODE CARDS */}
         {/* ========================================================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12">
@@ -310,35 +290,6 @@ export function Skills() {
               </div>
             </motion.div>
           ))}
-        </div>
-
-        {/* ========================================================================= */}
-        {/* BOTTOM SECTION FOOTER: "Better tools build better developers." */}
-        {/* ========================================================================= */}
-        <div className="mt-14 pt-8 border-t border-stone-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-          
-          {/* Left Serif Quote with Vertical Bar */}
-          <div className="flex items-start gap-3">
-            <div className="w-[2.5px] h-10 bg-[#064E3B] rounded-full mt-0.5" />
-            <div>
-              <div className="text-lg sm:text-xl font-serif text-stone-900 leading-tight">
-                Better tools
-              </div>
-              <div className="text-lg sm:text-xl font-serif text-stone-700 leading-tight">
-                build better developers.
-              </div>
-            </div>
-          </div>
-
-          {/* Right Subtext + Circular Action Arrow Button */}
-          <div className="flex items-center gap-3 self-end sm:self-auto text-xs font-mono font-bold tracking-wider text-stone-400">
-            <span>CONTINUOUSLY EXPLORING</span>
-            <span className="text-stone-300">→</span>
-            <div className="w-8 h-8 rounded-full bg-[#E2F7E2] text-[#064E3B] border border-[#BDEEC0] flex items-center justify-center shadow-2xs hover:scale-105 transition-transform cursor-pointer">
-              <ArrowRight className="w-4 h-4" />
-            </div>
-          </div>
-
         </div>
 
       </div>

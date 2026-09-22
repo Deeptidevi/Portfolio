@@ -40,26 +40,6 @@ export function About() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* ========================================================================= */}
-        {/* TOP EYEBROW BAR: "01 — ABOUT ME" & "/ BACKGROUND / EDUCATION / PROFILE" */}
-        {/* ========================================================================= */}
-        <div className="flex items-center justify-between text-[11px] font-mono tracking-widest text-stone-500 uppercase pb-6 mb-8 border-b border-stone-200/80">
-          <div className="flex items-center gap-2">
-            <span>01</span>
-            <span className="text-stone-300">—</span>
-            <span className="font-bold text-stone-700">ABOUT ME</span>
-          </div>
-
-          <div className="flex items-center gap-2 text-stone-400 font-semibold">
-            <span>/</span>
-            <span>BACKGROUND</span>
-            <span>/</span>
-            <span>EDUCATION</span>
-            <span>/</span>
-            <span>PROFILE</span>
-          </div>
-        </div>
-
-        {/* ========================================================================= */}
         {/* MAIN HEADLINE & SUMMARY */}
         {/* ========================================================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12">
@@ -198,36 +178,6 @@ export function About() {
               </div>
 
             </div>
-          </div>
-
-        </div>
-
-        {/* ========================================================================= */}
-        {/* BOTTOM EDITORIAL QUOTE */}
-        {/* ========================================================================= */}
-        <div className="mt-14 pt-8 border-t border-stone-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-          
-          <div className="flex items-start gap-3">
-            <div className="w-[2.5px] h-10 bg-[#064E3B] rounded-full mt-0.5" />
-            <div>
-              <div className="text-lg sm:text-xl font-serif text-stone-900 leading-tight">
-                Curiosity fuels learning,
-              </div>
-              <div className="text-lg sm:text-xl font-serif text-stone-700 leading-tight">
-                consistency delivers results.
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 self-end sm:self-auto text-xs font-mono font-bold tracking-wider text-stone-400">
-            <span>EXPLORE JOURNEY</span>
-            <span className="text-stone-300">→</span>
-            <a
-              href="#experience"
-              className="w-8 h-8 rounded-full bg-[#E2F7E2] text-[#064E3B] border border-[#BDEEC0] flex items-center justify-center shadow-2xs hover:scale-105 transition-transform cursor-pointer"
-            >
-              <ArrowRight className="w-4 h-4" />
-            </a>
           </div>
 
         </div>
